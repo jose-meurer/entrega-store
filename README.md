@@ -87,7 +87,7 @@ A arquitetura será baseada no padrão MVC (Model-View-Controller) e algumas pr�
 ## Roteiro de Desenvolvimento
 
 - [ ] **Configuração Inicial**
-  - [ ] Criar projeto Spring Boot no [Spring Initializr](https://start.spring.io/)
+  - [x] Criar projeto Spring Boot no [Spring Initializr](https://start.spring.io/)
   - [ ] Configurar dependências no `pom.xml`
   - [ ] Configurar o banco de dados H2
   - [ ] Configurar posteriormente o banco de dados PostgreSQL
