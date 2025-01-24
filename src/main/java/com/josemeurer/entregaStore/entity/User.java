@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -20,8 +21,16 @@ public class User implements Serializable {
     private UUID id;
     private String name;
     private String email;
+    private String phone;
     private String password;
 
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant createdAt;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant updatedAt;
+
+    @ManyToMany
     @JoinTable(name = "tb_user_role",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -67,6 +76,32 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    @PrePersist
+    public void  prePersist() {
+        createdAt = Instant.now();
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = Instant.now();
     }
 
     public Set<Role> getRoles() {
